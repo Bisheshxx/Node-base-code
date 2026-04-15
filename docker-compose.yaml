@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: .
+      target: builder
+    ports:
+      - "5001:6767"
+    env_file:
+      - .env.dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    # Use pnpm for the dev script
+    command: pnpm run dev
